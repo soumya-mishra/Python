@@ -1,0 +1,310 @@
+#*******Decorator
+#Lets say you have Cake pre made.You want to decorate it with flower and cream
+#So this is the functionality of Decorator with added code and extra things to add.
+# - Decorator has func as argument
+# - has function definition  inside a function.
+# - return a function
+def our_decorator(func):
+    def function_wrapper(x):
+        print("Before calling " + func.__name__)
+        func(x)
+        print("After calling " + func.__name__)
+    return function_wrapper
+
+def foo(x):
+    print("2-Hi, foo has been called with " + str(x))
+
+print("1-We call foo before decoration:")
+foo("Hi")
+    
+print("3-We now decorate foo with f:")
+zoo = our_decorator(foo) #Our decorator will return function_wrapper reference
+#so zoo has now function_wrapper reference
+print("We call foo after decoration:")
+zoo(42)
+#************************
+#Now we will write actual decorator and we are decoratinf foo function
+def our_decorator(func):
+    def function_wrapper(x):
+        print("Before calling " + func.__name__)
+        func(x)
+        print("After calling " + func.__name__)
+    return function_wrapper
+
+@our_decorator 
+def foo(x):
+    print("Hi, foo has been called with " + str(x))
+
+foo("Hi")
+
+#We can decorate every other function which takes one parameter with our decorator 'our_decorator'
+
+def our_decorator(func):
+    def function_wrapper(x):
+        print("Before calling " + func.__name__)
+        res = func(x)
+        print(res)
+        print("After calling " + func.__name__)
+    return function_wrapper
+
+@our_decorator
+def succ(n):
+    return n + 1
+
+succ(10)
+#*************
+#Also We provide a generalized version of the function_wrapper,
+# which accepts functions with arbitrary parameters in the following example
+
+from random import random, randint, choice
+
+def our_decorator(func):
+    def function_wrapper(*args, **kwargs):
+        print("Before calling " + func.__name__)
+        res = func(*args, **kwargs)
+        print(res)
+        print("After calling " + func.__name__)
+    return function_wrapper
+
+random = our_decorator(random)
+randint = our_decorator(randint)
+choice = our_decorator(choice)
+
+random()
+randint(3, 8)
+choice([4, 5, 6])
+#*******************
+#Class Decorator
+#We need to use call methos here
+class decorator_class(object):
+
+    def __init__(self, original_function):
+        self.original_function = original_function
+
+    def __call__(self, *args, **kwargs):
+        print('call method before {}'.format(self.original_function.__name__))
+        return self.original_function(*args, **kwargs)
+        
+
+@decorator_class
+def display():
+    print("display function ran")
+    
+@decorator_class
+def display_info(name,age):
+    print("display_info ran with arguments{} {}".format(name,age))
+    
+display()
+display_info("soumya",24)    
+
+##########################
+#Regular expression 
+import re
+str = "Course location is London or Paris!"
+mo = re.search(r"location.*(London|Paris|Zurich|Strasbourg)",str)
+print(mo.group())
+############################
+#List comprehension
+nums = [2,3,4,5,6,7.8,9,10]
+my_lists = [n for n in nums if n%2==0]
+print(my_lists)
+###################
+my_list = [(letter,n) for letter in 'abcd' for n in range(4)]
+print(my_list)
+############################
+#Iterator
+expertises = ["Novice", "Beginner", "Intermediate", "Proficient", "Experienced", "Advanced"]
+expertises_iterator = iter(expertises)
+next(expertises_iterator)
+##########################
+def city_generator():
+    yield("London")
+    yield("Hamburg")
+    yield("Konstanz")
+    yield("Amsterdam")
+    yield("Berlin")
+    yield("Zurich")
+    yield("Schaffhausen")
+    yield("Stuttgart")
+    
+city = city_generator()
+print(next(city))    
+print(next(city))  
+print(next(city))  
+#####################
+def fibonacci(n):
+    """ A generator for creating the Fibonacci numbers """
+    a, b, counter = 0, 1, 0
+    while True:
+        if (counter > n): 
+            return
+        yield b #you can yield a or b
+        a, b = b, a + b
+        counter += 1
+f = fibonacci(10)
+for x in f:
+    print(x, " ", end="") # 
+print()
+#################
+def infinite_looper(objects):
+    count = 0
+    while True:
+        if count >= len(objects):
+            count = 0
+        message = yield objects[count]
+        if message != None:
+            count = 0 if message < 0 else message
+        else:
+            count += 1
+
+x = infinite_looper("soumya") 
+#########################################  
+#Exceptions
+
+import sys
+
+try:
+    f = open('integers.txt')
+    s = f.readline()
+    i = int(s.strip())
+except IOError as e:
+    print(e)
+  
+#################3
+text = []
+try:
+    fh = open('C:/machine learning/Machine Learning.txt', 'r')
+except IOError:
+    print('cannot open')
+else:
+    text = fh.readlines()
+    fh.close()
+
+if text:
+    print(text[100])
+################
+a = 10   
+repr(a)
+str(a)
+########################
+#Object Oriented
+#########################
+class Employee:
+
+    num_of_emps = 0
+    raise_amt = 1.04
+
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.email = first + '.' + last + '@email.com'
+        self.pay = pay
+
+        Employee.num_of_emps += 1
+
+    def fullname(self):
+        return '{} {}'.format(self.first, self.last)
+
+    def apply_raise(self):
+        self.pay = int(self.pay * self.raise_amt)
+
+    @classmethod
+    def set_raise_amt(cls, amount):
+        cls.raise_amt = amount
+
+emp_1 = Employee('Corey', 'Schafer', 50000)
+emp_2 = Employee('Test', 'Employee', 60000)
+
+print(Employee.raise_amt)
+print(emp_1.raise_amt)
+print(emp_2.raise_amt)
+
+Employee.set_raise_amt(1.05)
+
+print(Employee.raise_amt)
+print(emp_1.raise_amt)
+print(emp_2.raise_amt)
+##############################
+#Class method to avoid __init__ method
+################
+class Employee:
+    def __init__(self, first, last, pay):
+        self.first = first
+        self.last = last
+        self.email = first + '.' + last + '@email.com'
+        self.pay = pay
+      
+
+    @classmethod
+    def from_string(cls, emp_str):
+       first, last, pay = emp_str.split('-')
+       return cls(first, last, pay) 
+
+
+emp_str_1 = 'John-Doe-70000'
+emp_str_2 = 'Steve-Smith-30000'
+emp_str_3 = 'Jane-Doe-90000'
+
+new_emp_1 = Employee.from_string(emp_str_1)
+
+###############################
+#Multiple Inheritance
+########################
+class A:
+    def m(self):
+        print("m of A called")
+
+class B(A):
+    def m(self):
+        print("m of B called")
+    
+class C(A):
+    def m(self):
+        print("m of C called")
+
+class D(C,B):
+    pass
+x = D()
+x.m()
+####################
+#Meta class
+#################
+x = input("Do you need the answer? (y/n): ")
+if x=="y":
+    required = True
+else:
+    required = False
+    
+    
+def the_answer(self, *args):              
+        return 42
+
+#Manager function    
+def augment_answer(cls):                      
+    if required:
+        cls.the_answer = the_answer
+    # we have to return the class now:
+    return cls
+ 
+    
+@augment_answer
+class Philosopher1: 
+    pass
+@augment_answer
+class Philosopher2: 
+    pass
+@augment_answer
+class Philosopher3: 
+    pass
+ 
+    
+plato = Philosopher1()
+kant = Philosopher2()
+  
+    
+# let's see what Plato and Kant have to say :-)
+if required:
+    print(kant.the_answer())
+    print(plato.the_answer())
+else:
+    print("The silence of the philosphers")
