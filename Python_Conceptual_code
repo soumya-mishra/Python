@@ -1,4 +1,5 @@
 #*******Decorator
+
 #Lets say you have Cake pre made.You want to decorate it with flower and cream
 #So this is the functionality of Decorator with added code and extra things to add.
 # - Decorator has func as argument
