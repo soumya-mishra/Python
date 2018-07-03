@@ -1,4 +1,5 @@
 #Simple Decorator without the @ symbol
+
 def our_decorator(func):
     def function_wrapper(x):
         print("Before calling " + func.__name__)
