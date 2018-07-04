@@ -18,6 +18,7 @@ foo = our_decorator(foo)
 
 print("We call foo after decoration:")
 foo(42)
+
 ########################
 Output:
 We call foo before decoration:
