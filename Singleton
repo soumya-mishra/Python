@@ -9,3 +9,18 @@ class My_singleton:
 
 x = My_singleton()  
 y = My_singleton()  
+
+######################
+def singleton(myclass):
+    instance = {}
+    def getinstance(*args,**kwargs):
+        if myclass not in instance:
+            instance[myclass]= myclass(*args,**kwargs)
+        return instance[myclass]
+    return getinstance
+  
+@singleton
+class testclass:
+    pass
+
+x = testclass()
