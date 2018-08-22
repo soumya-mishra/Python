@@ -1,0 +1,11 @@
+class My_singleton:
+ 
+    _instance = None
+    def __new__(self):
+        if not self._instance:
+            self._instance = super(My_singleton,self).__new__(self)
+        return self._instance    
+    
+
+x = My_singleton()  
+y = My_singleton()  
