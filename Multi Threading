@@ -1,3 +1,5 @@
+# Multithreading is used when our CPU is Idle and waiting for something.
+
 import time
 import threading
 
