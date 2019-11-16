@@ -1,7 +1,7 @@
 # Python
 ### Web Scrapping 
 ### Decorator
-### Decorator_generator
+### Decorator with generator
 ### Generator and Yield combination
 ### MultiThreading
 ### Number Representation
