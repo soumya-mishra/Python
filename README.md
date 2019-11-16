@@ -8,7 +8,7 @@
 * [Python Conceptual](https://github.com/soumya-mishra/Python/blob/master/Python_Conceptual_code)
 * [Shallow Copy](https://github.com/soumya-mishra/Python/blob/master/Shallow_copy)
 * [Random-Shuffle](https://github.com/soumya-mishra/Python/blob/master/Randomized.py)
-* [Singleton] (https://github.com/soumya-mishra/Python/blob/master/Singleton)
+* [Singleton](https://github.com/soumya-mishra/Python/blob/master/Singleton)
 
 
 
