@@ -32,10 +32,10 @@ df['X'] # column X
 
 df[['X','Y']] # columns X and Y
 
-##### select rows using loc and iloc
-##### can also use ix, but it's slightly tricky to use: https://stackoverflow.com/questions/31593201/pandas-iloc-vs-ix-vs-loc-explanation
-##### ix is useful for mixing usage of loc and iloc (use both labels and positions at the same time)
-##### returns a series if single row selected
+#### select rows using loc and iloc
+#### can also use ix, but it's slightly tricky to use: https://stackoverflow.com/questions/31593201/pandas-iloc-vs-ix-vs-loc-explanation
+#### ix is useful for mixing usage of loc and iloc (use both labels and positions at the same time)
+#### returns a series if single row selected
 
 df.loc['A'] # row A
 
@@ -179,12 +179,17 @@ df.query('X not in [4,5,6]')
 #### missing values - dropna and fillna
 
 df.dropna() # removes any rows with NaN values (how = "any" by default)
+
 df.dropna(how="all") # removes rows with all NaN values
+
 df.dropna(subset=["X"]) # remove rows where value is NaN in column X
+
 df.dropna(axis=1,thresh=10) # drop all columns containing at least 10 NaN values
 
 df.fillna(0) # replace all NaN values with 0
+
 df['Y'].fillna(0, inplace=True) # replace all NaN values in column 'Y' with 0
+
 df['X'].fillna(value=df['XX'].mean()) # replace NaN on column X with mean of column XX
 
 #### groupby with aggregate function
@@ -194,15 +199,22 @@ df.groupby('X').describe()
 #### concat
 
 df1 = pd.DataFrame(np.random.randn(5, 5), columns=['a', 'b', 'c', 'd', 'e'], index=['v','w','x','y','z'])
+
 df2 = pd.DataFrame(np.random.randn(5, 5), columns=['a', 'b', 'c', 'd', 'e'], index=['v','w','x','y','z'])
+
 df3 = pd.DataFrame(np.random.randn(5, 5), columns=['a', 'b', 'c', 'd', 'e'], index=['v','w','x','y','z'])
+
 pd.concat([df1,df2,df3]) # concat vertically (match columns)
+
 pd.concat([df1,df2,df3],axis=1) # concat horizontally (match rows)
+
 
 #### merge (== join)
 
 left = pd.DataFrame([[1,'A'],[1,'B'],[2,'B']], columns=['C1','C2'], index=['I1','I2','I3'])
+
 right = pd.DataFrame([['B','C','D']], columns=['C2','C3','C4'], index=['I1'])
+
 pd.merge(left,right,how='inner',on='C2') # same as inner join in sql (concats horizontally)
 
 #### pivot tables
@@ -211,23 +223,35 @@ pivot = {'A': ['foo','foo','foo','bar','bar','bar'],
          'B': ['one','one','two','two','one','one'],
          'C': ['x','y','x','y','x','y'],
          'D': [1,3,2,5,4,1]}
+
 df = pd.DataFrame(pivot)
+
 df.pivot_table(values='D',index=['A','B'],columns=['C'])
 
 #### multi-level index dataframes (ie dataframes within dataframes)
-
 outside = ['G1','G1','G1','G2','G2','G2']
+
 inside = [1,2,3,1,2,3]
+
 hier_index = pd.MultiIndex.from_tuples(list(zip(outside,inside)))
+
 df = pd.DataFrame(np.arange(1,13).reshape(6,2),hier_index,['A','B'])
+
 df.index.names = ['Groups','Num']
+
 df.loc['G1'].loc[1]['A'] # access elements using multiple loc
+
 df.xs(1,level='Num') # return rows where 'num'=1
 
 #### input output
-# df = pd.read_csv('data_2d.csv', header=None) # headers included by default
-# df.to_csv('out',index=False)
-# df = pd.read_excel('Excel.xlsx',sheetname='Sheet1')
-# df.to_excel('out.xlsx',sheet_name='NewSheet')
-# data = pd.read_html('somelink') # returns a list
-# don't use pandas to read sql (better alternatives available)
+ df = pd.read_csv('data_2d.csv', header=None) # headers included by default
+
+df.to_csv('out',index=False)
+
+df = pd.read_excel('Excel.xlsx',sheetname='Sheet1')
+
+df.to_excel('out.xlsx',sheet_name='NewSheet')
+
+data = pd.read_html('somelink') # returns a list
+
+**don't use pandas to read sql (better alternatives available)
