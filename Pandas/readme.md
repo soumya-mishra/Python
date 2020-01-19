@@ -13,109 +13,167 @@ df['Z']=df['X']+df['Y'] # new column with values X+Y
 df['XX']=df.apply(lambda row: row['X']*2, axis=1) # new column with values twice of column X
 
 df['YY']=1 # new column of ones
+
 df.insert(2, column='D', value=100) # new column of '100's called 'D' at position 2 (3rd column)
+
 df.drop('B',axis=0, inplace=True) # drop row
+
 df.drop('Z',axis=1) # drop column
+
 Z = df.pop('Z') # drop column and store series to a variable
 
-#### selecting from dataframes
+### selecting from dataframes
 
-# select columns
+### select columns
 
 df.X # column X (does not work when column name has spaces)
+
 df['X'] # column X
+
 df[['X','Y']] # columns X and Y
 
-# select rows using loc and iloc
-# can also use ix, but it's slightly tricky to use: https://stackoverflow.com/questions/31593201/pandas-iloc-vs-ix-vs-loc-explanation
-# ix is useful for mixing usage of loc and iloc (use both labels and positions at the same time)
-# returns a series if single row selected
+##### select rows using loc and iloc
+##### can also use ix, but it's slightly tricky to use: https://stackoverflow.com/questions/31593201/pandas-iloc-vs-ix-vs-loc-explanation
+##### ix is useful for mixing usage of loc and iloc (use both labels and positions at the same time)
+##### returns a series if single row selected
 
 df.loc['A'] # row A
+
 df.loc['A':] # row A onwards
+
 df.loc[:'X'] # until row X (inclusive!)
+
 df.loc['A','X'] # row A, column X
+
 df.loc[['A','doesnotexist']] # return row with NaN for doesnotexist, check if exists via "doesnotexist" in df.index
+
 df.loc[['A','C'],['X','Y']] # rows A and C, columns X and Y
 
+
 df.iloc[0] # row at position 0
+
 df.iloc[:,0:3] # column from position 0 to before 3
+
 df.iloc[[0,1],[0,1]] # rows 0 and 1, and columns 0 and 1
 
 #### broadcasting operations
 
 df['X'].add(5) # == df['X'] + 5
+
 df['X'].sub(5) # == df['X'] - 5 == df['X'].subtract(5)
+
 df['X'].mul(5) # == df['X'] * 5 == df['X'].multiply(5)
+
 df['X'].div(5) # == df['X'] / 5 == df['X'].divide(5)
 
 #### basic attributes and methods
 
-# general data exploration
+#### general data exploration
 df.info()  # type, index, columns, dtypes, memory usage - printed automatically
+
 df.head()
+
 df.tail()
+
 df.sample(n=2) # return 2 random rows
+
 df.sample(frac=.25) # return 25% random rows
+
 df.nlargest(n=2, columns='X') # returns 2 rows for largest X
+
 df.nsmallest(n=2, columns='X') # returns 2 rows for smallest X
+
 df.index # RangeIndex
+
 df.columns # nparray of column names
+
 df.axes # index and columns
+
 df.values # nparray of nparrays
+
 df.dtypes # series
+
 df.shape # tuple
+
 df.get_dtype_counts() # count number of columns for each datatype
+
 df.sum() # sums summable columns into a series (where column names become the index)
+
 df.sum(axis = "columns")
 
-# methods for columns
+#### methods for columns
 df.sort_values(by=['X','Y'], ascending=[False,True]) # sort df by column X (descending) then Y (ascending)
+
 df['X'].isnull() # series of booleans
+
 df['X'].rank() # rank values in column X in ascending order
+
 df['X'].unique() # nparray: unique values from column X
+
 df['X'].nunique() # number of unique values from column X, does not include null by default!
+
 df['X'].value_counts() # returns count of each value from column X
+
 df.drop_duplicates(subset = ['X'], keep ="first") # keep only first instance of X values
 
-# index-related
+#### index-related
 df.set_index('X') # sets column X as the index
+
 df.set_index('Y') # sets column Y as the index, removes column X!
+
 df.reset_index() # resets index (removes current index, resets dataframe, inserts new index starting from 0)
+
 df.sort_index() # important for optimization
 
-# parse columns
+##### parse columns
 df.astype(int) # convert to int
+
 df['X'].astype("category") # convert to category (important for optimization)
+
 pd.to_datetime(df['X']) # convert to date (important for optimization)
 
-# rename columns
+#### rename columns
+
 df.rename(columns = {'X': 'A', 'Y': 'B'}, inplace=True)
+
 df.columns = ['X', 'Y', 'Z', 'XX', 'YY', 'ZZ']
 
 #### selecting with conditional operators
 
-# create mask, which is a series of booleans
+#### create mask, which is a series of booleans
 mask1 = df['X'] < 5
+
 mask2 = df['Y'].isin([4,5,6])
+
 mask3 = df['Y'].isnull()
+
 mask4 = df['Y'].notnull()
+
 mask5 = df['Y'].between(4,6)
+
 mask6 = df['Y'].duplicated(keep = False) # return True if duplicated
+
 mask7 = ~df['Y'].duplicated(keep = False) # return True if unique
 
-# use mask to select from dataframe
+#### use mask to select from dataframe
 df[mask1] # return rows where X<5
+
 df[mask1][['X','Y']] # return only columns X and Y
+
 df[mask1 & mask2]
+
 df[mask1 | mask2]
+
 df[(mask1 | mask2) & mask3]
+
 df.where(mask1) # return NaN for entire row when condition not met
 
-# alernatively, use query (possibly better performance)
-# ensure column names dont have spaces: use df.columns = [col.replace(" ","_") for col in df.columns]
+#### alernatively, use query (possibly better performance)
+#### ensure column names dont have spaces: use df.columns = [col.replace(" ","_") for col in df.columns]
 df.query('X < 5') # return rows where X<5
+
 df.query('X in [4,5,6]')
+
 df.query('X not in [4,5,6]')
 
 #### missing values - dropna and fillna
