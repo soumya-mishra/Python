@@ -255,6 +255,7 @@ df.to_excel('out.xlsx',sheet_name='NewSheet')
 data = pd.read_html('somelink') # returns a list
 
 **don't use pandas to read sql (better alternatives available)
+
 ########################################
 [TOC]
 
