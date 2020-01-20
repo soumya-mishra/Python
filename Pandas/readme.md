@@ -1167,7 +1167,7 @@ df_new = pd.merge(left=df1, right=df2, how='outer', left_index=True, right_index
 # Merge on columns
 df_new = pd.merge(left=df1, right=df2, how='left', left_on='col1', right_on='col2')
 
-// Trap: When joining on columns, the indexes on the passed DataFrames are ignored.
+//// Trap: When joining on columns, the indexes on the passed DataFrames are ignored.
 // Trap: many-to-many merges on a column can result in an explosion of associated data.
 
 # Join on indexes (another way of merging)
