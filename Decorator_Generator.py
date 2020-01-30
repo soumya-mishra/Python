@@ -1,5 +1,6 @@
 from functools import wraps
 
+
 def get_ready(gen):
     """
     Decorator: gets a generator gen ready 
