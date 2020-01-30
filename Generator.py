@@ -87,3 +87,4 @@ index: 1
 >>> next(looper)
 'h'
 >>> 
+
