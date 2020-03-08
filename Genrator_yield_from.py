@@ -18,6 +18,7 @@ for x in g2:
     print(x, end=", ")
 print()
 
+
 #The yield from <expr> statement can be used inside the body of a generator.
 #<expr> has to be an expression evaluating to an iterable,
 # from which an iterator will be extracted. 
