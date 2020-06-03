@@ -1,4 +1,5 @@
 # BinaryTree nodes - print the nodes vertically in recursive way
+
 import pdb
 # Data Structure to store a binary tree node
 class Node:
