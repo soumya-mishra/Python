@@ -12,6 +12,7 @@ class Node:
 
 # Recursive function to do a pre-order traversal of the tree and fill dict
 # Here node has 'dist' horizontal distance from the root of the tree
+
 def printVertical(node, dist, dict):
 
     # base case: empty tree
