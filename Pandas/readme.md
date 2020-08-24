@@ -128,6 +128,7 @@ df.sort_index() # important for optimization
 df.astype(int) # convert to int
 
 df['X'].astype("category") # convert to category (important for optimization)
+
 ------------------------------
 
 pd.to_datetime(df['X']) # convert to date (important for optimization)
