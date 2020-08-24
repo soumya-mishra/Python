@@ -95,14 +95,6 @@ df.dtypes # series
 
 df.shape # tuple
 
-+------------+---------+--------+ /n
-|            |  A      |  B     |
-+------------+---------+---------
-|      0     | 0.626386| 1.52325|----axis=1----->
-+------------+---------+--------+
-             |         |
-             | axis=0  |
-             ↓         ↓
 
 df.sum() # sums summable columns into a series (where column names become the index)
 df.mean() | df.median() | df.value_counts()
@@ -136,8 +128,12 @@ df.sort_index() # important for optimization
 df.astype(int) # convert to int
 
 df['X'].astype("category") # convert to category (important for optimization)
+------------------------------
 
 pd.to_datetime(df['X']) # convert to date (important for optimization)
+the data type will change from object to datetime64[ns]
+
+----------------------
 
 #### rename columns
 
