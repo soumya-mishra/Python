@@ -6,7 +6,7 @@ Creating dataframes, adding and dropping columns
 
 df = pd.DataFrame(np.arange(1,10).reshape(3,3),['A','B','C'],['w','x','y'])
 
-df.columns = ['W','X','Y'] # change column names
+(df.rename(columns={'A': 'a', 'C': 'c'})) # change column names
 
 df['Z']=df['X']+df['Y'] # new column with values X+Y
 
@@ -95,10 +95,17 @@ df.dtypes # series
 
 df.shape # tuple
 
-df.get_dtype_counts() # count number of columns for each datatype
++------------+---------+--------+
+|            |  A      |  B     |
++------------+---------+---------
+|      0     | 0.626386| 1.52325|----axis=1----->
++------------+---------+--------+
+             |         |
+             | axis=0  |
+             ↓         ↓
 
 df.sum() # sums summable columns into a series (where column names become the index)
-
+df.mean() | df.median() | df.value_counts()
 df.sum(axis = "columns")
 
 #### methods for columns
