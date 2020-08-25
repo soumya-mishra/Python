@@ -200,6 +200,8 @@ df['X'].fillna(value=df['XX'].mean()) # replace NaN on column X with mean of col
 
 df.groupby('X').describe()
 
+## How to know semantics
+?pd.concat
 #### concat
 
 df1 = pd.DataFrame(np.random.randn(5, 5), columns=['a', 'b', 'c', 'd', 'e'], index=['v','w','x','y','z'])
