@@ -559,6 +559,7 @@ df2[df2.E.str.contains("tw|ou")]
 df['raw'].str.contains('....-..-..', regex=True)  # regex
 
 # where cells are arrays
+map works only with series, with dataframe it throws error
 df[df['country'].map(lambda country: 'Syria' in country)]
 
 # take random columns
