@@ -37,6 +37,7 @@ df[['X','Y']] # columns X and Y
 #### ix is useful for mixing usage of loc and iloc (use both labels and positions at the same time)
 #### returns a series if single row selected
 
+
 df.loc['A'] # row A
 
 df.loc['A':] # row A onwards
