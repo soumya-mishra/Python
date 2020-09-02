@@ -1,5 +1,5 @@
-import numpy as np
-import pandas as pd
+import numpy as np<br>
+import pandas as pd <br>
 Creating dataframes, adding and dropping columns
 
 df = pd.DataFrame(np.arange(1,10).reshape(3,3),['A','B','C'],['w','x','y'])
