@@ -1288,11 +1288,14 @@ dfg = df.groupby(level=0).sum()
 
 
 # Dates+times (and their indexes)
-```python
+```
 Best way to deal with Dates in Dataframe is - <br>
+```
+```python
 dateparse = lambda x:pd.to_datetime(x,format ="%b-%y" ) <br>
 gold = pd.read_csv("EDA_Gold_Silver_prices.csv",date_parser=dateparse,parse_dates=['Month'])
-
+```
+```
 here format is very important ,
 to choose format  use the link <br>
 https://strftime.org/
