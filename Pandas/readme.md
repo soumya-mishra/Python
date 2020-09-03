@@ -1287,6 +1287,7 @@ dfg = df.groupby(level=0).sum()
 
 
 # Dates+times (and their indexes)
+```
 Best way to deal with Dates in Dataframe is - <br>
 dateparse = lambda x:pd.to_datetime(x,format ="%b-%y" ) <br>
 gold = pd.read_csv("EDA_Gold_Silver_prices.csv",date_parser=dateparse,parse_dates=['Month'])
@@ -1294,7 +1295,7 @@ gold = pd.read_csv("EDA_Gold_Silver_prices.csv",date_parser=dateparse,parse_date
 here format is very important ,
 to choose format  use the link <br>
 https://strftime.org/
-
+````
 ```python
 # Dates and time – points and spans
 With its focus on time-series data, pandas has a suite of tools for managing dates and time: either as a point in time (a Timestamp) or as a span of time (a Period).
