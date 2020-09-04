@@ -1,8 +1,16 @@
 ```python
 import numpy as np<br>
 import pandas as pd <br>
-#Creating dataframes, adding and dropping columns
 
+# DataFrame comes with curly braces
+pivot = {'A': ['foo','foo','foo','bar','bar','bar'],
+         'B': ['one','one','two','two','one','one'],
+         'C': ['x','y','x','y','x','y'],
+         'D': [1,3,2,5,4,1]}
+
+df = pd.DataFrame(pivot)
+
+#Creating dataframes, adding and dropping columns
 df = pd.DataFrame(np.arange(1,10).reshape(3,3),['A','B','C'],['w','x','y'])
 
 (df.rename(columns={'A': 'a', 'C': 'c'})) # change column names
