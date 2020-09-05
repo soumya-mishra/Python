@@ -580,6 +580,7 @@ df['raw'].str.contains('....-..-..', regex=True)  # regex
 # where cells are arrays
 map works only with series, with dataframe it throws error
 df[df['country'].map(lambda country: 'Syria' in country)]
+# DataFrame as same function applymap()
 
 # take random columns
 df.take(np.random.permutation(len(df))[:2])
