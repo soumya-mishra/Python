@@ -18,6 +18,7 @@ df = pd.DataFrame(np.arange(1,10).reshape(3,3),['A','B','C'],['w','x','y'])
 df['Z']=df['X']+df['Y'] # new column with values X+Y
 
 df['XX']=df.apply(lambda row: row['X']*2, axis=1) # new column with values twice of column X
+#ALways apply on a series like df['colname'].apply(lambda x: x[0])
 
 df['YY']=1 # new column of ones
 
@@ -37,7 +38,7 @@ df.X # column X (does not work when column name has spaces)
 
 df['X'] # column X
 
-df[['X','Y']] # columns X and Y
+df[['X','Y']] # columns X and Y  - This is a DataFrame
 
 #### select rows using loc and iloc
 #### can also use ix, but it's slightly tricky to use: https://stackoverflow.com/questions/31593201/pandas-iloc-vs-ix-vs-loc-explanation
@@ -63,7 +64,17 @@ df.iloc[0] # row at position 0
 df.iloc[:,0:3] # column from position 0 to before 3
 
 df.iloc[[0,1],[0,1]] # rows 0 and 1, and columns 0 and 1
-
+````
+Aggregation	Description
+count()		Total number of items
+first(), 	last()	First and last item
+mean(), median()	Mean and median
+min(), max()	Minimum and maximum
+std(), var()	Standard deviation and variance
+mad()		Mean absolute deviation
+prod()		Product of all items
+sum()		Sum of all items
+``````
 #### broadcasting operations
 
 df['X'].add(5) # == df['X'] + 5
