@@ -1,6 +1,6 @@
 ```python
-import numpy as np<br>
-import pandas as pd <br>
+import numpy as np <br>
+import pandas as pd  <br>
 
 # DataFrame comes with curly braces
 pivot = {'A': ['foo','foo','foo','bar','bar','bar'],
