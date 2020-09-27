@@ -193,6 +193,8 @@ df.where(mask1) # return NaN for entire row when condition not met
 
 #### alernatively, use query (possibly better performance)
 #### ensure column names dont have spaces: use df.columns = [col.replace(" ","_") for col in df.columns]
+## IF column name has space use backtick  line  `C C`    (Before 1 in my computer)
+
 df.query('X < 5') # return rows where X<5
 
 df.query('X in [4,5,6]')
