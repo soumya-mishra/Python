@@ -10,6 +10,8 @@ pivot = {'A': ['foo','foo','foo','bar','bar','bar'],
 
 df = pd.DataFrame(pivot)
 
+# Convert Pandas to numpy :
+#use to_numpy instead of values .
 #Creating dataframes, adding and dropping columns
 df = pd.DataFrame(np.arange(1,10).reshape(3,3),['A','B','C'],['w','x','y'])
 
