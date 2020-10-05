@@ -725,6 +725,15 @@ for (name, series) in df.iteritems():
 	print('Col name: ' + str(name))
 	print('First value: ' +
 		str(series.iat[0]) + '\n')
+		
+df = pd.DataFrame({"Name":["soumya","swati","siku","silu","antony"],
+                   "Age":[20,30,40,10,40],
+                   "empid":[123,345,432,546,876]}
+for i,row in df.iterrows():
+    print(row["Name"])
+    break
+ 
+Output: soumya
 ```
 
 (<a href="#top">Back to top</a>)
