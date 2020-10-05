@@ -66,18 +66,18 @@ df.iloc[0] # row at position 0
 df.iloc[:,0:3] # column from position 0 to before 3
 
 df.iloc[[0,1],[0,1]] # rows 0 and 1, and columns 0 and 1
+```
 ````
-``
-Aggregation	Description
-count()		Total number of items
-first(), 	last()	First and last item
-mean(), median()	Mean and median
-min(), max()	Minimum and maximum
-std(), var()	Standard deviation and variance
-mad()		Mean absolute deviation
-prod()		Product of all items
-sum()		Sum of all items
-
+Aggregation	Description <br>
+count()		Total number of items  <br>
+first(), 	last()	First and last item <br>
+mean(), median()	Mean and median  <br>
+min(), max()	Minimum and maximum  <br>
+std(), var()	Standard deviation and variance  <br>
+mad()		Mean absolute deviation  <br>
+prod()		Product of all items  <br>
+sum()		Sum of all items  <br>
+````
 ``````
 #### broadcasting operations
 
