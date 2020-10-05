@@ -36,7 +36,7 @@ Z = df.pop('Z') # drop column and store series to a variable
 
 df.X # column X (does not work when column name has spaces)
 
-df['X'] # column X
+df['X'] # column X  or Series 
 
 df[['X','Y']] # columns X and Y  - This is a DataFrame
 
