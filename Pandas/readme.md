@@ -77,7 +77,7 @@ std(), var()	Standard deviation and variance
 mad()		Mean absolute deviation
 prod()		Product of all items
 sum()		Sum of all items
-```
+
 ``````
 #### broadcasting operations
 
