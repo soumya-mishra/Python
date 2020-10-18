@@ -1,4 +1,7 @@
 # Python
+
+This repo has all data science python related code snippet.
+
 * [Web Scrapping](https://github.com/soumya-mishra/Python/tree/master/Webscrapping) 
 * [Decorator](https://github.com/soumya-mishra/Python/blob/master/Decorator)
 * [Decorator with Generator](https://github.com/soumya-mishra/Python/blob/master/Decorator_Generator.py)
