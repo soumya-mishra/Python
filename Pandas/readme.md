@@ -2,6 +2,7 @@
 import numpy as np 
 import pandas as pd  
 
+
 # DataFrame comes with curly braces
 pivot = {'A': ['foo','foo','foo','bar','bar','bar'],
          'B': ['one','one','two','two','one','one'],
