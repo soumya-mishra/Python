@@ -80,6 +80,10 @@ prod()		Product of all items  <br>
 sum()		Sum of all items  <br>
 ````
 ``````
+### Get Dummies or One hot encoding:
+dummy1 = pd.get_dummies(telecom[['Contract', 'PaymentMethod', 'gender', 'InternetService']], drop_first=True)
+
+
 #### broadcasting operations
 
 df['X'].add(5) # == df['X'] + 5
