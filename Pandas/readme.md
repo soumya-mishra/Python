@@ -211,6 +211,15 @@ df.query('X in [4,5,6]')
 
 df.query('X not in [4,5,6]')
 
+### Iterate rows in DataFrame and Series:
+for index, row in df.iterrows():
+	print(row.column1)
+	print(row.column2)...
+
+for index,row in series.items():
+	print(row)
+	
+
 #### missing values - dropna and fillna
 
 df.dropna() # removes any rows with NaN values (how = "any" by default)
@@ -488,7 +497,7 @@ df.to_csv('name.csv', encoding='utf-8')
 
 # Excel
 
-from pandas import ExcelWriter
+from pandas import ExcelWr
 writer = ExcelWriter('filename.xlsx')
 df1.to_excel(writer,'Sheet1')
 df2.to_excel(writer,'Sheet2')
