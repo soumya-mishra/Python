@@ -23,7 +23,7 @@ df['Z']=df['X']+df['Y'] # new column with values X+Y
 
 df['XX']=df.apply(lambda row: row['X']*2, axis=1) # new column with values twice of column X
 #ALways apply on a series like df['colname'].apply(lambda x: x[0])
-The value 0 identifies the rows, and 1 identifies the columns.
+#The value 0 identifies the rows, and 1 identifies the columns.
 
 df['YY']=1 # new column of ones
 
