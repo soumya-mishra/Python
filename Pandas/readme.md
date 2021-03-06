@@ -63,6 +63,18 @@ df.loc[['A','doesnotexist']] # return row with NaN for doesnotexist, check if ex
 
 df.loc[['A','C'],['X','Y']] # rows A and C, columns X and Y
 
+# Can not put condition in iloc, but can be put in loc.
+df.loc[df['shield'] > 6]
+
+            max_speed  shield
+cobra               1       2
+viper               4       5
+sidewinder          7       8
+
+df.loc['viper']
+max_speed    4
+shield       5
+
 
 df.iloc[0] # row at position 0
 
