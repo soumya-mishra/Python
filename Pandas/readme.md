@@ -29,7 +29,7 @@ df['YY']=1 # new column of ones
 
 df.insert(2, column='D', value=100) # new column of '100's called 'D' at position 2 (3rd column)
 
-df.drop('B',axis=0, inplace=True) # drop row
+df.drop('B',axis=0, inplace=True) # drop row  or  df.drop(columns=['B'],inplace=True)
 
 df.drop('Z',axis=1) # drop column
 
@@ -176,6 +176,7 @@ df['X'].astype("category") # convert to category (important for optimization)
 ------------------------------
 
 pd.to_datetime(df['X']) # convert to date (important for optimization)
+df["date"] = pd.to_datetime(df["date"],format="%d-%m-%Y")
 the data type will change from object to datetime64[ns]
 
 ----------------------
