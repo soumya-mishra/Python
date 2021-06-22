@@ -12,6 +12,8 @@ pivot = {'A': ['foo','foo','foo','bar','bar','bar'],
 
 df = pd.DataFrame(pivot)
 
+temp = pd.DataFrame(np.random.rand(2,3),columns=list("abc"))
+
 # Convert Pandas to numpy :
 #use to_numpy instead of values .
 #Creating dataframes, adding and dropping columns
@@ -306,7 +308,13 @@ df.loc['G1'].loc[1]['A'] # access elements using multiple loc
 df.xs(1,level='Num') # return rows where 'num'=1
 
 #### input output
- df = pd.read_csv('data_2d.csv', header=None) # headers included by default
+df = pd.read_csv('data_2d.csv', header=None) # headers included by default
+names: specify column names
+usecols: which columns to keep
+dtype: specify data types
+nrows: # of rows to read
+na_values: strings to recognize as NaN
+
 
 df.to_csv('out',index=False)
 
