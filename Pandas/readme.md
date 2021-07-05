@@ -82,7 +82,6 @@ df.iloc[0] # row at position 0
 df.iloc[:,0:3] # column from position 0 to before 3
 
 df.iloc[[0,1],[0,1]] # rows 0 and 1, and columns 0 and 1
-```
 ````
 Aggregation	Description <br>
 count()		Total number of items  <br>
