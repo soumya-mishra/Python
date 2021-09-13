@@ -164,7 +164,7 @@ df.set_index('X') # sets column X as the index
 
 df.set_index('Y') # sets column Y as the index, removes column X!
 
-df.reset_index() # resets index (removes current index, resets dataframe, inserts new index starting from 0)
+df.reset_index(inplace=True) # resets index (removes current index, resets dataframe, inserts new index starting from 0)
 
 df.sort_index() # important for optimization
 
