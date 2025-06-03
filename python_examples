@@ -1,0 +1,1006 @@
+# Initial list
+fruits = ['apple', 'banana', 'cherry']
+
+# .append(<el>)
+fruits.append('orange')  
+print(f"After append: {fruits}")  
+# ['apple', 'banana', 'cherry', 'orange']
+
+# Or: <list> += [<el>]
+fruits += ['grape']
+print(f"After += [<el>]: {fruits}")  
+# ['apple', 'banana', 'cherry', 'orange', 'grape']
+
+# .extend(<collection>)
+fruits.extend(['kiwi', 'melon'])
+print(f"After extend: {fruits}")  
+# ['apple', 'banana', 'cherry', 'orange', 'grape', 'kiwi', 'melon']
+
+# Or: <list> += <collection>
+fruits += ['pear', 'plum']
+print(f"After += <collection>: {fruits}")  
+# ['apple', 'banana', 'cherry', 'orange', 'grape', 'kiwi', 'melon', 'pear', 'plum']
+
+# .count(<el>)
+print(f"Count of 'apple': {fruits.count('apple')}")  
+# 1
+
+# .index(<el>)
+print(f"Index of 'grape': {fruits.index('grape')}")  
+# 4
+
+# .insert(index, <el>)
+fruits.insert(2, 'mango')
+print(f"After insert: {fruits}")  
+# ['apple', 'banana', 'mango', 'cherry', ...]
+
+# .pop([index])
+popped_item = fruits.pop(3)
+print(f"Popped item: {popped_item}")  
+print(f"After pop: {fruits}")  
+# 'cherry', list without it
+
+# .remove(<el>)
+fruits.remove('banana')
+print(f"After remove: {fruits}")  
+# Removes 'banana'
+
+# .clear()
+cleared_list = fruits.copy()
+cleared_list.clear()
+print(f"Cleared list: {cleared_list}")  
+# []
+
+# .sort()
+numbers = [5, 3, 9, 1]
+numbers.sort()
+print(f"Sorted list: {numbers}")  
+# [1, 3, 5, 9]
+
+# sorted() with key
+students = [('Alice', 23, 88), ('Bob', 22, 75), ('Carol', 24, 91)]
+sorted_students = sorted(students, key=lambda student: student[2])
+print(f"Sorted by marks: {sorted_students}")  
+# Sorted by 3rd element (marks)
+
+# .reverse()
+numbers.reverse()
+print(f"Reversed list: {numbers}")  
+# [9, 5, 3, 1]
+
+# list[::-1] --> reverse copy
+reversed_copy = numbers[::-1]
+print(f"Reverse using slicing: {reversed_copy}")  
+# [1, 3, 5, 9]
+
+# list[start:stop:step]
+sample = ['a', 'b', 'c', 'd', 'e']
+print(f"Every second item: {sample[::2]}")  
+# ['a', 'c', 'e']
+
+# <iter> = reversed(<list>)
+rev_iter = reversed(sample)
+print(f"Reversed iterator to list: {list(rev_iter)}")  
+# ['e', 'd', 'c', 'b', 'a']
+
+# Dict:
+
+# Sample dictionary
+my_dict = {100: 'a', 200: 'b', 300: 'c'}
+
+# dict.keys()
+print(f"Keys: {my_dict.keys()}")  
+# dict_keys([100, 200, 300])
+
+# dict.values()
+print(f"Values: {my_dict.values()}")  
+# dict_values(['a', 'b', 'c'])
+
+# dict.items()
+print(f"Items: {my_dict.items()}")  
+# dict_items([(100, 'a'), (200, 'b'), (300, 'c')])
+
+iterable = [10, 20, 30]
+new_dict = dict.fromkeys(iterable, 'default')
+print(f"From keys: {new_dict}")  
+# {10: 'default', 20: 'default', 30: 'default'}
+
+x = {'a': 1, 'b': 2}
+y = {'b': 3, 'c': 4}
+z = {**x, **y}
+print(f"Merged dict: {z}")  
+# {'a': 1, 'b': 3, 'c': 4}  ('b' is overwritten by y)
+
+value = x.get('d', 999)
+print(f"Get with default: {value}")  
+# 999
+
+x.setdefault('d', 100)
+print(f"Set default: {x}")  
+# {'a': 1, 'b': 2, 'd': 100}
+
+from collections import defaultdict
+
+dd = defaultdict(int)  # default value is 0
+dd['x'] += 1
+print(f"defaultdict int: {dd}")  
+# defaultdict(<class 'int'>, {'x': 1})
+
+dd2 = defaultdict(lambda: 1)
+print(f"defaultdict lambda: {dd2['new']}")
+# 1 (default value from lambda)
+
+pairs = [('x', 1), ('y', 2)]
+print(f"dict(collection): {dict(pairs)}")  
+# {'x': 1, 'y': 2}
+
+# dict(zip(keys, values))
+keys = ['name', 'age']
+values = ['Alice', 25]
+zipped = dict(zip(keys, values))
+print(f"dict(zip): {zipped}")  
+# {'name': 'Alice', 'age': 25}
+
+info = {'name': 'Bob'}
+info.update({'age': 30})
+print(f"Updated dict: {info}")  
+# {'name': 'Bob', 'age': 30}
+
+removed = info.pop('age')
+print(f"Popped value: {removed}, after pop: {info}")  
+# 30, {'name': 'Bob'}
+
+d = {'a': 1, 'b': 2, 'c': 1}
+
+# {k for k, v in dict.items() if v == 1}
+keys_with_value_1 = {k for k, v in d.items() if v == 1}
+print(f"Keys with value 1: {keys_with_value_1}")  
+# {'a', 'c'}
+
+# {k: v for k, v in dict.items() if k in keys}
+keys = ['a', 'c']
+filtered = {k: v for k, v in d.items() if k in keys}
+print(f"Filtered dict: {filtered}")  
+# {'a': 1, 'c': 1}
+
+MAP, FILTER ,REDUCE:
+---------------
+
+<iter> = map(lambda x: x + 1, range(10))            # Or: iter([1, 2, ..., 10])
+<iter> = filter(lambda x: x > 5, range(10))         # Or: iter([6, 7, 8, 9])
+<obj>  = reduce(lambda out, x: out + x, range(10))  # Or: 45
+
+# Create empty set
+s = set()  # Correct way
+s2 = {1, 2, 3}  # With elements
+
+# .add(<el>)
+s2.add(4)
+print(s2)  # {1, 2, 3, 4}
+
+# .remove(<el>) - KeyError if not found
+s2.remove(2)
+print(s2)  # {1, 3, 4}
+
+# .discard(<el>) - No error if not found
+s2.discard(99)  # No error
+
+# .update(<collection>) or |=
+s2.update([5, 6])
+print(s2)  # {1, 3, 4, 5, 6}
+
+# union or |
+a = {1, 2}
+b = {2, 3}
+print(a.union(b))  # {1, 2, 3}
+print(a | b)       # {1, 2, 3}
+
+# intersection or &
+print(a & b)       # {2}
+
+# difference or -
+print(a - b)       # {1}
+
+# symmetric_difference or ^
+print(a ^ b)       # {1, 3}
+
+# issubset or <=
+print({1, 2} <= {1, 2, 3})  # True
+
+# issuperset or >=
+print({1, 2, 3} >= {2})     # True
+
+# .pop()
+item = s2.pop()
+print(f"Popped: {item}, Remaining: {s2}")
+
+# List comprehension (eager evaluation)
+list_comp = [i + 1 for i in range(10)]
+print(list_comp)  # [1, 2, ..., 10]
+
+# Set comprehension
+set_comp = {i for i in range(10) if i > 5}
+print(set_comp)  # {6, 7, 8, 9}
+
+# Generator expression (lazy evaluation)
+gen = (i + 5 for i in range(10))
+print(list(gen))  # [5, 6, ..., 14]
+
+# Dictionary comprehension
+dict_comp = {i: i * 2 for i in range(10)}
+print(dict_comp)  # {0: 0, 1: 2, ..., 9: 18}
+
+# Iterator
+my_list = [10, 20, 30]
+iterator = iter(my_list)
+print(next(iterator))  # 10
+print(next(iterator))  # 20
+print(next(iterator))  # 30
+
+# Iterable (you can loop through it)
+for item in my_list:
+    print(item)
+
+# For loop by index
+data = ['a', 'b', 'c']
+for i in range(len(data)):
+    print(f"Index {i}: {data[i]}")
+
+# For loop by value
+for char in data:
+    print(f"Char: {char}")
+
+# While loop
+count = 0
+while count < 5:
+    print(f"Count is {count}")
+    count += 1
+
+colors = ['red', 'green', 'blue']
+for i, color in enumerate(colors):
+    print(f"Index {i}: {color}")
+
+# Start from index 1
+for i, color in enumerate(colors, start=1):
+    print(f"Color {i}: {color}")
+
+def simple_gen():
+    yield 1
+    yield 2
+    yield 3
+
+gen_obj = simple_gen()
+print(next(gen_obj))  # 1
+print(next(gen_obj))  # 2
+print(next(gen_obj))  # 3
+
+# No argument
+f1 = lambda: 42
+print(f1())  # 42
+
+# With arguments
+add = lambda x, y: x + y
+print(add(3, 4))  # 7
+
+# Used with map()
+squared = list(map(lambda x: x**2, [1, 2, 3]))
+print(squared)  # [1, 4, 9]
+
+from itertools import count, cycle, repeat, accumulate, chain, compress
+from itertools import dropwhile, filterfalse, groupby, islice, zip_longest
+from itertools import takewhile, product, permutations, combinations, combinations_with_replacement
+import operator
+
+from itertools import count
+j = 0
+for i in count(10):
+    print(i, end=' ')
+    j += 1
+    if j > 10:
+        break
+# Output: 10 11 12 13 14 15 16 17 18 19 20 21
+
+from itertools import cycle
+i = 0
+for val in cycle('ABCD'):
+    print(val, end=' ')
+    i += 1
+    if i >= 8:
+        break
+# Output: A B C D A B C D
+
+from itertools import repeat
+for val in repeat(10, 3):
+    print(val, end=' ')
+# Output: 10 10 10
+
+from itertools import accumulate
+import operator
+
+numbers = [1, 2, 3, 4, 5]
+sum_result = list(accumulate(numbers))
+print(sum_result)  # [1, 3, 6, 10, 15]
+
+prod_result = list(accumulate(numbers, operator.mul))
+print(prod_result)  # [1, 2, 6, 24, 120]
+
+from itertools import chain
+result = list(chain('ABC', 'DEF'))
+print(result)  # ['A', 'B', 'C', 'D', 'E', 'F']
+
+nested = ['ABC', 'DEF']
+result = list(chain.from_iterable(nested))
+print(result)  # ['A', 'B', 'C', 'D', 'E', 'F']
+
+from itertools import compress
+data = 'ABCDEF'
+selectors = [1, 0, 1, 0, 1, 1]
+result = list(compress(data, selectors))
+print(result)  # ['A', 'C', 'E', 'F']
+
+from itertools import dropwhile
+result = list(dropwhile(lambda x: x < 5, [1, 4, 6, 4, 1]))
+print(result)  # [6, 4, 1]
+
+from itertools import filterfalse
+result = list(filterfalse(lambda x: x % 2, range(10)))
+print(result)  # [0, 2, 4, 6, 8]
+
+from itertools import groupby
+
+data = 'AAABBBCCDAA'
+for key, group in groupby(data):
+    print(f"{key}: {list(group)}")
+# Output:
+# A: ['A', 'A', 'A']
+# B: ['B', 'B', 'B']
+# C: ['C', 'C']
+# D: ['D']
+# A: ['A', 'A']
+
+from itertools import islice
+result = list(islice('ABCDEFG', 2, None))  # From index 2 to end
+print(result)  # ['C', 'D', 'E', 'F', 'G']
+
+from itertools import zip_longest
+result = list(zip_longest('ABCD', 'xy', fillvalue='-'))
+print(result)  # [('A', 'x'), ('B', 'y'), ('C', '-'), ('D', '-')]
+
+from itertools import takewhile
+result = list(takewhile(lambda x: x < 5, [1, 4, 6, 4, 1]))
+print(result)  # [1, 4]
+
+from itertools import product
+result = list(product('AB', repeat=2))
+print(result)  # [('A', 'A'), ('A', 'B'), ('B', 'A'), ('B', 'B')]
+
+from itertools import permutations
+result = list(permutations('ABCD', 2))
+print(result)
+# [('A', 'B'), ('A', 'C'), ..., ('D', 'C')]
+
+from itertools import combinations
+result = list(combinations('ABCD', 2))
+print(result)
+# [('A', 'B'), ('A', 'C'), ..., ('C', 'D')]
+
+from itertools import combinations_with_replacement
+result = list(combinations_with_replacement('ABCD', 2))
+print(result)
+# [('A', 'A'), ('A', 'B'), ..., ('D', 'D')]
+
+from collections import namedtuple
+
+Point = namedtuple('Point', ['x', 'y'])
+p1 = Point(10, 20)
+
+print(p1.x)  # 10
+print(p1.y)  # 20
+print(p1)    # Point(x=10, y=20)
+
+from collections import deque
+
+dq = deque([1, 2, 3])
+
+dq.append(4)
+dq.appendleft(0)
+print(dq)  # deque([0, 1, 2, 3, 4])
+
+dq.pop()
+dq.popleft()
+print(dq)  # deque([1, 2, 3])
+
+from collections import ChainMap
+
+dict1 = {'a': 1, 'b': 2}
+dict2 = {'b': 3, 'c': 4}
+
+cm = ChainMap(dict1, dict2)
+print(cm['b'])  # 2 (from dict1, first match)
+print(cm['c'])  # 4
+
+from collections import Counter
+
+c = Counter('banana')
+print(c)  # Counter({'a': 3, 'n': 2, 'b': 1})
+
+print(c.most_common(2))  # [('a', 3), ('n', 2)]
+
+from collections import OrderedDict
+
+od = OrderedDict()
+od['a'] = 1
+od['b'] = 2
+od['c'] = 3
+
+print(od)  # OrderedDict([('a', 1), ('b', 2), ('c', 3)])
+
+from collections import defaultdict
+
+dd = defaultdict(int)
+dd['a'] += 1
+dd['b'] += 5
+print(dd)  # defaultdict(<class 'int'>, {'a': 1, 'b': 5})
+
+# Using list as default factory
+words = ['cat', 'dog', 'cat']
+grouped = defaultdict(list)
+for word in words:
+    grouped[word].append(word.upper())
+print(grouped)  # {'cat': ['CAT', 'CAT'], 'dog': ['DOG']}
+
+from collections import UserDict
+
+class MyDict(UserDict):
+    def __setitem__(self, key, value):
+        print(f'Setting {key} = {value}')
+        super().__setitem__(key, value)
+
+d = MyDict()
+d['x'] = 10  # Setting x = 10
+print(d)     # {'x': 10}
+
+from collections import UserList
+
+class MyList(UserList):
+    def append(self, item):
+        print(f'Appending {item}')
+        super().append(item)
+
+ml = MyList([1, 2])
+ml.append(3)  # Appending 3
+print(ml)     # [1, 2, 3]
+
+from collections import UserString
+
+class MyStr(UserString):
+    def upper(self):
+        return self.data.upper() + '!'
+
+s = MyStr("hello")
+print(s.upper())  # HELLO!
+
+s = "hello world"
+s2 = "123"
+s3 = "Hello\tWorld"
+s4 = "  Hello  "
+s5 = "Python is fun. Python is powerful."
+
+# Basic case handling
+print(s.capitalize())     # 'Hello world'
+print(s.casefold())       # 'hello world'
+print(s.center(20, '-'))  # '----hello world-----'
+print(s.count('o'))       # 2
+
+# Encoding
+print("café".encode())    # b'caf\xc3\xa9'
+
+# Checking ends
+print(s.endswith("world"))    # True
+
+# Tabs
+print(s3.expandtabs(4))   # Replaces \t with 4 spaces: 'Hello   World'
+
+# Searching
+print(s.find("world"))    # 6
+print(s5.index("Python")) # 0
+
+# Formatting
+print("Name: {}, Age: {}".format("Alice", 30))  # 'Name: Alice, Age: 30'
+data = {'name': 'Bob', 'age': 25}
+print("Name: {name}, Age: {age}".format_map(data))  # 'Name: Bob, Age: 25'
+
+# Character checks
+print("abc123".isalnum())     # True
+print("abc".isalpha())        # True
+print("hello!".isascii())     # True
+print("123".isdecimal())      # True
+print("123".isdigit())        # True
+print("var_name".isidentifier())  # True
+print("hello".islower())      # True
+print("123".isnumeric())      # True
+print("Hi\n".isprintable())   # False (newline is not printable)
+print("   ".isspace())        # True
+print("Hello World".istitle())# True
+print("HELLO".isupper())      # True
+
+# Joining and justification
+print("-".join(['a', 'b', 'c']))   # 'a-b-c'
+print("test".ljust(10, '*'))       # 'test******'
+print("HELLO".lower())             # 'hello'
+print(s4.lstrip())                 # 'Hello  '
+
+# Translation
+table = str.maketrans("aeiou", "12345")
+print("hello".translate(table))    # 'h2ll4'
+
+# Partitioning
+print("hello world".partition(" "))   # ('hello', ' ', 'world')
+
+# Replacing
+print(s.replace("world", "Python"))  # 'hello Python'
+
+# Right-side functions
+print(s.rfind("l"))          # 9
+print(s.rindex("l"))         # 9
+print("test".rjust(10, '*')) # '******test'
+print("hello world".rpartition(" ")) # ('hello', ' ', 'world')
+print("a,b,c,d".rsplit(",", 2))      # ['a,b', 'c', 'd']
+print(s4.rstrip())           # '  Hello'
+
+# Splitting
+print("apple,banana,cherry".split(",")) # ['apple', 'banana', 'cherry']
+print("line1\nline2\nline3".splitlines()) # ['line1', 'line2', 'line3']
+
+# Start/End trimming and check
+print(s.startswith("hello"))    # True
+print(s4.strip())               # 'Hello'
+
+# Swap case
+print("HeLLo".swapcase())       # 'hEllO'
+
+# Title case
+print("hello world".title())    # 'Hello World'
+
+# Upper case
+print("hello".upper())          # 'HELLO'
+
+# Zero fill
+print("42".zfill(5))            # '00042'
+
+# RANDOM
+import random
+
+# 1. randrange(start, stop[, step])
+print("randrange(1, 10):", random.randrange(1, 10))  # Any number from 1 to 9
+
+# 2. randint(a, b)
+print("randint(1, 10):", random.randint(1, 10))  # Any number from 1 to 10 (inclusive)
+
+# 3. choice(seq)
+fruits = ['apple', 'banana', 'cherry']
+print("choice(fruits):", random.choice(fruits))  # Randomly picks one fruit
+
+# 4. choices(seq, k=n)
+print("choices(fruits, k=2):", random.choices(fruits, k=2))  # Picks 2 (can be duplicates)
+
+# 5. shuffle(seq)
+numbers = [1, 2, 3, 4, 5]
+random.shuffle(numbers)
+print("shuffle(numbers):", numbers)  # Shuffles in place
+
+# 6. sample(seq, k)
+print("sample(fruits, 2):", random.sample(fruits, 2))  # Picks 2 unique elements
+
+# 7. random() - Returns float between 0.0 and 1.0
+print("random():", random.random())
+
+import re
+text = "The rain in Spain"
+new_text = re.sub(r"ain", "XYZ", text)
+print(new_text)  # The rXYZ in SpXYZ
+
+text = "My phone numbers are 123-4567 and 987-6543"
+numbers = re.findall(r"\d{3}-\d{4}", text)
+print(numbers)  # ['123-4567', '987-6543']
+
+text = "apple,banana;cherry orange"
+parts = re.split(r"[;, ]", text)
+print(parts)  # ['apple', 'banana', 'cherry', 'orange']
+
+text = "Today is June 3rd"
+match = re.search(r"\d{1,2}[a-z]{2}", text)
+if match:
+    print(match.group())  # '3rd'
+
+text = "2025 is the year"
+match = re.match(r"\d{4}", text)
+if match:
+    print(match.group())  # '2025'
+
+text = "Emails: a@b.com, x@y.org"
+matches = re.finditer(r"\w+@\w+\.\w+", text)
+for m in matches:
+    print(m.group())  # a@b.com \n x@y.org
+
+
+text = "abc 123"
+
+print(re.findall(r"\d", text))      # ['1', '2', '3'] → \d = digit
+print(re.findall(r"\w", text))      # ['a','b','c','1','2','3'] → \w = alphanumeric
+print(re.findall(r"^abc", text))    # ['abc'] → ^ = start of string
+print(re.findall(r"3$", text))      # ['3'] → $ = end of string
+print(re.findall(r".", text))       # Every character (except newline)
+print(re.findall(r"\d{2,3}", text)) # ['123'] → 2 to 3 digit numbers
+
+datetime:
+
+from datetime import date, time, datetime, timedelta
+
+# Today's date
+today = date.today()
+print("Today's date:", today)
+
+# Create a specific date
+d = date(2025, 6, 3)
+print("Specific date:", d)
+
+# Accessing components
+print("Year:", d.year)
+print("Month:", d.month)
+print("Day:", d.day)
+
+# Create a time object
+t = time(14, 30, 15)  # 2:30:15 PM
+print("Time object:", t)
+
+# Access components
+print("Hour:", t.hour)
+print("Minute:", t.minute)
+print("Second:", t.second)
+
+# Current date and time
+now = datetime.now()
+print("Now:", now)
+
+# Create specific datetime
+dt = datetime(2025, 6, 3, 12, 45)
+print("Specific datetime:", dt)
+
+# Formatting datetime
+formatted = dt.strftime("%Y-%m-%d %H:%M")
+print("Formatted:", formatted)
+
+# Parsing from string
+parsed = datetime.strptime("2025-06-03 12:45", "%Y-%m-%d %H:%M")
+print("Parsed:", parsed)
+
+# Create a timedelta
+delta = timedelta(days=5, hours=3)
+
+# Add to current datetime
+future = now + delta
+print("5 days later:", future)
+
+# Subtract dates
+days_diff = future - now
+print("Difference:", days_diff)
+print("Days:", days_diff.days)
+print("Total seconds:", days_diff.total_seconds())
+
+# Example 1: At least one True
+values = [False, False, True]
+print(any(values))  # Output: True
+
+# Example 2: All False
+values = [0, '', None]
+print(any(values))  # Output: False
+
+# Example 3: Check if any even number exists
+nums = [1, 3, 5, 8]
+print(any(n % 2 == 0 for n in nums))  # Output: True
+
+# Example 1: All True
+values = [True, 1, "hello"]
+print(all(values))  # Output: True
+
+# Example 2: Contains a False value
+values = [True, False, True]
+print(all(values))  # Output: False
+
+# Example 3: Check if all numbers are positive
+nums = [2, 4, 6]
+print(all(n > 0 for n in nums))  # Output: True
+
+#File
+# Open a file for reading ('r' mode)
+f = open("demo.txt", 'r')
+
+# Read the whole file as a single string
+content = f.read()
+print("Full content:\n", content)
+f.close()
+
+f = open("demo.txt", 'r')
+# Read one line at a time
+line1 = f.readline()
+print("First line:", line1)
+f.close()
+
+f = open("demo.txt", 'r')
+# Read all lines into a list
+lines = f.readlines()
+print("List of lines:", lines)
+f.close()
+
+# 'w' mode will overwrite the file
+f = open("demo.txt", 'w')
+
+f.write("Hello World!\n")
+
+#save python to json
+import json
+
+data = [1, 'simple', 'list']
+with open('data.json', 'w') as f:
+    json.dump(data, f)
+
+#load data from json
+import json
+
+with open('data.json', 'r') as f:
+    loaded_data = json.load(f)
+
+print("Loaded JSON:", loaded_data)
+f.write("This is a new file.\n")
+f.close()
+
+f = open("demo.txt", 'a')
+f.write("Appending this line.\n")
+f.close()
+
+f = open("demo.txt", 'r+')
+# Move to beginning
+f.seek(0)
+f.write("Start-> ")
+f.close()
+
+Exceptions:
+----------------------
+try: 
+   catch 
+   raise
+except valueError:
+
+Standard library:
+--------------------
+import os
+os.getcwd()
+os.chdir()
+
+import shutil  - file and directory management task 
+shutil.copyfile('data.db', 'archive.db')
+shutil.move('/build/executables', 'installdir')
+
+glob module provides a function for making file lists from directory wildcard searches
+import globe
+glob.glob('*.py')
+
+
+The argparse module provides a more sophisticated mechanism to process command line arguments. 
+import argparse
+parser = argparse.ArgumentParser(prog = 'top',
+ description = 'Show top lines from each file')
+parser.add_argument('filenames', nargs='+')
+parser.add_argument('-l', '--lines', type=int, default=10)
+args = parser.parse_args()
+print(args)
+
+
+import functools
+from functools import reduce, lru_cache ..
+
+*************************************************
+# Example of efficient processing with batching and caching
+from functools import lru_cache
+import torch
+
+@lru_cache(maxsize=1000)
+def cache_prompt_encoding(prompt):
+    return tokenizer(prompt, return_tensors="pt")
+
+def process_batch(prompts, batch_size=32):
+    batches = [prompts[i:i + batch_size] for i in range(0, len(prompts), batch_size)]
+    results = []
+    
+    for batch in batches:
+        # Process encodings in parallel
+        encodings = [cache_prompt_encoding(prompt) for prompt in batch]
+        
+        # Batch process
+        with torch.no_grad():  # Disable gradient computation
+            outputs = model.generate(
+                input_ids=torch.cat([enc['input_ids'] for enc in encodings]),
+                max_length=50,
+                use_cache=True  # Enable KV-cache
+            )
+        
+        results.extend(outputs)
+    
+    return results
+
+********
+from multiprocessing import Pool
+
+def square(x):
+    return x * x
+
+if __name__ == '__main__':
+    with Pool(4) as p:
+        result = p.map(square, [1, 2, 3, 4])
+        print(result)  # [1, 4, 9, 16]
+
+from concurrent.futures import ProcessPoolExecutor
+
+def square(x):
+    return x * x
+
+if __name__ == '__main__':
+    with ProcessPoolExecutor(max_workers=4) as executor:
+        future = executor.submit(square, 5)
+        print(future.result())  # 25
+
+        numbers = [1, 2, 3, 4, 5]
+        results = list(executor.map(square, numbers))
+        print(results)  # [1, 4, 9, 16, 25]
+
+from joblib import Parallel, delayed
+
+def square(x):
+    return x * x
+
+results = Parallel(n_jobs=2)(delayed(square)(i) for i in range(5))
+print(results)  # [0, 1, 4, 9, 16]
+
+from multiprocessing import Process, Pipe
+
+def send_data(conn):
+    conn.send("Hello from child process")
+    conn.close()
+
+if __name__ == '__main__':
+    parent_conn, child_conn = Pipe()
+    p = Process(target=send_data, args=(child_conn,))
+    p.start()
+    print(parent_conn.recv())  # Output: Hello from child process
+    p.join()
+
+import asyncio
+
+async def say_after(delay, what):
+    await asyncio.sleep(delay)
+    print(what)
+
+async def main():
+    task1 = say_after(1, 'hello')
+    task2 = say_after(2, 'world')
+    await asyncio.gather(task1, task2)
+
+asyncio.run(main())
+
+import asyncio
+import aiohttp
+
+async def fetch(session, url):
+    async with session.get(url) as response:
+        return await response.text()
+
+async def main():
+    urls = ['https://example.com', 'https://httpbin.org/get']
+    async with aiohttp.ClientSession() as session:
+        tasks = [fetch(session, url) for url in urls]
+        results = await asyncio.gather(*tasks)
+        for r in results:
+            print(r[:60])  # Print part of each response
+
+asyncio.run(main())
+
+Virtual Env:
+-----------
+Poetry
+
+
+
+Python Performance Analysis:
+--------------------------
+timeit module
+cprofile 
+Pyinstrument
+py-spy module 
+pyflame module
+
+
+Python class:
+-------------
+__init__()
+__call__()
+
+directly call the class name 
+
+Decorator:
+----------
+A way to modify or enhance functions and methods in a clean and reusable way. Functions that take other functions as arguments and return modified functions.
+
+def my_decorator(func):
+    def wrapper():
+        print("Something is happening before the function is called.")
+        func()
+        print("Something is happening after the function is called.")
+    return wrapper
+
+@my_decorator # Applying the decorator using @ syntax
+def say_hello():
+    print("Hello!")
+
+say_hello()
+# Output:
+# Something is happening before the function is called.
+# Hello!
+# Something is happening after the function is called.
+
+
+Multiple Inheritane :
+-----------------
+class Flyer:
+    def fly(self):
+        print("I can fly!")
+
+class Swimmer:
+    def swim(self):
+        print("I can swim!")
+
+class FlyingFish(Flyer, Swimmer):
+    def __init__(self, name):
+        self.name = name
+
+# Create an instance of FlyingFish
+fish = FlyingFish("Sparky")
+
+# Access methods from both parent classes
+fish.fly()   # Output: I can fly!
+fish.swim()  # Output: I can swim!
+
+Method Resolution Order (MRO):
+------------------------------
+MRO: When same method is there, Which method will call first.
+That is decided by MRO.
+
+class A:
+    def method(self):
+        print("Method from A")
+
+class B(A):
+    def method(self):
+        print("Method from B")
+
+class C(A):
+    def method(self):
+        print("Method from C")
+
+class D(B, C):  # Multiple inheritance: D inherits from B and C
+    pass
+
+d_instance = D()
+d_instance.method() # Which 'method' will be called?
+print(D.mro())     # Print the Method Resolution Order for class D
+
+
+Explanation of MRO in this example:
+D inherits from B and C (in that order).
+B inherits from A.
+C inherits from A.
+The MRO for D is calculated as: [D, B, C, A, object].
+
+Python uses the C3 linearization algorithm to calculate the MRO. In simpler terms, the MRO is determined by:
+Depth-First: It prioritizes going down the inheritance hierarchy as deep as possible before moving to the next parent.
+Left-to-Right: It follows the order in which parent classes are listed in the class definition.
