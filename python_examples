@@ -854,6 +854,11 @@ if __name__ == '__main__':
         results = list(executor.map(square, numbers))
         print(results)  # [1, 4, 9, 16, 25]
 
+#delayed(function): This is a helper function that wraps your target function. When you call the 
+#wrapped function (delayed(my_func)(arg1, arg2)), it doesn't execute my_func immediately. Instead,
+#it creates an object that represents the call to my_func with the given arguments.
+#These "delayed" objects are then passed to the Parallel instance.
+
 from joblib import Parallel, delayed
 
 def square(x):
